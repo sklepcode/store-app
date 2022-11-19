@@ -30,6 +30,6 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t sklepcode/store:$IMAGE_TAG
+          docker build -t sklepcode/store:$IMAGE_TAG .
           docker push sklepcode/store:$IMAGE_TAG
           echo "::set-output name=image::sklepcode/store:$IMAGE_TAG"
