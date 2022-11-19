@@ -25,3 +25,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build, Tag, and Push Image to DockerHub
+        id: build-image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t sklepcode/store:$IMAGE_TAG
+          docker push sklepcode/store:$IMAGE_TAG
+          echo "::set-output name=image::sklepcode/store:$IMAGE_TAG"
